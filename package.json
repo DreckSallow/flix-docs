@@ -10,6 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@unocss/preset-uno": "^0.53.3",
+    "@unocss/reset": "^0.53.3",
     "astro": "^2.7.0"
+  },
+  "devDependencies": {
+    "unocss": "^0.53.3"
   }
 }
