@@ -1,52 +1,56 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import WriterWord from "../components/writer-word.astro";
+import CardFeature from "../components/card-feature.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main></main>
+<Layout title="Flix - The app for workspaces">
+  <section class="section-header w-full flex">
+    <header class="m-auto p-3 flex flex-col items-center gap-16">
+      <div class="flex flex-col gap-8 items-center">
+        <h1 class="text-9xl font-bold">Flix App</h1>
+        <WriterWord
+          words={["Create.", "Import.", "Organize."]}
+          className="text-9xl font-bold h-120px"
+        />
+      </div>
+      <div class="flex flex-row gap-4 font-semibold">
+        <a
+          class="bg-blue-600 text-white px-4 py-3 rounded-md cursor-pointer"
+          href="https://github.com/DreckSallow/flix/releases"
+        >
+          Download now
+        </a>
+        <a href="/docs" class="px-4 py-3 cursor-pointer">Documentation</a>
+      </div>
+    </header>
+  </section>
+  <section class="w-full flex justify-center p-4 py-12">
+    <div class="max-w-80% items-center overflow-hidden">
+      <h2 class="text-5xl font-semibold mb-20 text-center">
+        Some important features
+      </h2>
+      <ul class="flex flex-row flex-wrap gap-6">
+        <CardFeature
+          header="Import"
+          content="Supports anki files, you don't need to create your decks from scratch."
+        />
+        <CardFeature
+          header="Markdown"
+          content="You can write notes using Markdown. Also you can write in Plain Text!."
+        />
+        <CardFeature
+          header="Organize"
+          content="Create workspaces or learning spaces to group decks and notes."
+        />
+      </ul>
+    </div>
+  </section>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+  .section-header {
+    min-height: 100vh;
+    padding-top: 70px;
+  }
 </style>
