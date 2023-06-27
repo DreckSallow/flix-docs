@@ -1,0 +1,80 @@
+---
+interface Props {
+  className?: string;
+  words: string[];
+}
+
+const { words, className } = Astro.props;
+---
+
+<word-slice data-words={words} class={className}>
+  <h3></h3>
+</word-slice>
+
+<style>
+  word-slice {
+    border-right: 6px solid transparent;
+    animation: cursorAnimation 2s infinite;
+  }
+  @keyframes cursorAnimation {
+    0% {
+      border-right-color: transparent;
+    }
+    50% {
+      border-right-color: black;
+    }
+    100% {
+      border-right-color: transparent;
+    }
+  }
+</style>
+
+<script>
+  class WordSlice extends HTMLElement {
+    constructor() {
+      super();
+      const words = (this.dataset.words ?? "").split(",");
+      const header = this.querySelector("h3");
+
+      let indexWord = 0;
+      let indexChar = 0;
+      let toBack = false;
+
+      setInterval(() => {
+        if (!header) return;
+        if (indexWord >= words.length) {
+          indexWord = 0;
+        }
+        let currentWord = words[indexWord];
+
+        if (toBack) {
+          header.textContent = header.textContent?.slice(
+            0,
+            header.textContent.length - 1
+          ) as string;
+          if (header.textContent.length === 0) {
+            toBack = false;
+
+            indexWord += 1;
+            indexChar = 0;
+          }
+        } else {
+          if (indexChar < currentWord.length) {
+            header.textContent = `${header.textContent}${currentWord[indexChar]}`;
+            indexChar += 1;
+          } else {
+            indexChar = 0;
+            if (indexWord + 1 >= words.length) {
+              indexWord = 0;
+            } else {
+              indexWord += 1;
+            }
+            toBack = true;
+          }
+        }
+      }, 240);
+    }
+  }
+
+  customElements.define("word-slice", WordSlice);
+</script>
