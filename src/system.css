@@ -1,0 +1,30 @@
+.yellow-theme {
+  --primary-color: #cace57;
+}
+
+.light-theme {
+  --alpha: 1;
+  --primary-color: 200, 98%, 39%;
+  --text-color: 215, 19%, 35%;
+  --bg-color: 210, 40%, 98%;
+}
+
+.th-bg {
+  background-color: hsla(var(--bg-color), var(--alpha));
+}
+
+.th-bg-primary {
+  background-color: hsla(var(--primary-color), var(--alpha));
+}
+
+.th-text-color {
+  color: hsla(var(--text-color), var(--alpha));
+}
+
+.th-border-primary {
+  border: 1px solid hsla(var(--primary-color), var(--alpha));
+}
+
+.links a:hover {
+  text-decoration-line: underline;
+}
