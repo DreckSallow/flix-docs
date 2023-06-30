@@ -9,10 +9,10 @@ const { images, className } = Astro.props;
 ---
 
 <image-slider data-images={images} class={"relative " + className}>
-  <button class="button button-left left-2 hover:bg-neutral-300 rounded-full">
+  <button class="button button-left left-2 hover:bg-neutral-200 rounded-full">
     <Arrow className="h-10 w-10 fill-neutral-600 rotate-180" />
   </button>
-  <ul class="w-full h-full relative">
+  <ul class="w-full h-full relative rounded-xl overflow-hidden">
     {
       images.map((img) => {
         return (
@@ -23,7 +23,7 @@ const { images, className } = Astro.props;
       })
     }
   </ul>
-  <button class="button button-right right-2 hover:bg-neutral-300 rounded-full">
+  <button class="button button-right right-2 hover:bg-neutral-200 rounded-full">
     <Arrow className="h-10 w-10 fill-neutral-600 " />
   </button>
 </image-slider>
@@ -36,6 +36,7 @@ const { images, className } = Astro.props;
     top: 50%;
     transform: translateY(-50%);
   }
+
   img {
     transition: opacity 0.5s ease;
   }
@@ -48,6 +49,9 @@ const { images, className } = Astro.props;
 
   li:first-child {
     opacity: 1;
+  }
+  ul {
+    border: 1px solid hsla(var(--text-color), 0.4);
   }
 </style>
 

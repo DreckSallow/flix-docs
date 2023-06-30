@@ -1,0 +1,56 @@
+---
+import FlixLogo from "./icons/flix-logo.astro";
+import GithubIcon from "./icons/github.astro";
+import SunIcon from "./icons/sun.astro";
+---
+
+<nav
+  id="main-nav"
+  class="w-full flex flex-row justify-between px-4 text-lg z-99 th-bg"
+>
+  <ul class="h-full flex flex-row items-center gap-4">
+    <li>
+      <a href="/" class="flex flex-row gap-1 items-center">
+        <FlixLogo className="h-10 w-12" />
+        Flix
+      </a>
+    </li>
+    <li>
+      <a href="/docs">docs</a>
+    </li>
+  </ul>
+  <ul class="h-full flex flex-row items-center gap-6">
+    <li>
+      <a href="https://github.com/DreckSallow/flix" target="_blank">
+        <GithubIcon className="fill-black h-7 w-7" />
+      </a>
+    </li>
+    <li>
+      <SunIcon className="fill-gray-800 h-7 w-7" />
+    </li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    height: 70px;
+    position: fixed;
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsla(var(--text-color), 0.4);
+    top: 0;
+  }
+  nav li {
+    cursor: pointer;
+  }
+</style>
+<!-- 
+<script>
+  const nav = document.querySelector("#main-nav") as HTMLElement | null;
+  const height = nav?.getBoundingClientRect().height ?? 0;
+  document.addEventListener("scroll", () => {
+    if (!nav) return;
+    if (window.scrollY > height) nav.style.borderBottomWidth = "1px";
+    else nav.style.borderBottomWidth = "0px";
+  });
+</script> -->

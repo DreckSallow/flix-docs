@@ -7,28 +7,40 @@ import ImageSlider from "../components/sliders/image-slider.astro";
 
 <Layout title="Flix - The app for workspaces">
   <section class="section-header w-full flex">
-    <header class="m-auto p-3 flex flex-col items-center gap-16">
+    <header class="m-auto p-3 flex flex-col items-center gap-8">
       <div class="flex flex-col gap-8 items-center">
         <h1 class="text-9xl font-bold">Flix App</h1>
         <WriterWord
           words={["Create.", "Import.", "Organize."]}
-          className="text-9xl font-bold h-120px"
+          className="word-slider text-9xl font-bold h-120px"
         />
       </div>
-      <div class="flex flex-row gap-4 font-semibold">
+      <div class="flex flex-row gap-4 font-semibold mt-10">
         <a
-          class="bg-blue-600 text-white px-4 py-3 rounded-md cursor-pointer"
+          class="th-bg-primary button-effect font-semibold text-white px-4 py-3 rounded-md cursor-pointer"
           href="https://github.com/DreckSallow/flix/releases"
         >
           Download now
         </a>
-        <a href="/docs" class="px-4 py-3 cursor-pointer">Documentation</a>
+        <a
+          href="/docs"
+          class="px-4 py-3 cursor-pointer th-border-primary rounded-md button-effect"
+          >Documentation</a
+        >
       </div>
+      <p class="th-text-color mt-4 text-lg links">
+        Free and Open Source project. Developed by <a
+          href="https://www.arandadev.com/"
+          target="_blank"
+          class="italic font-semibold"
+          >Dreck Sallow
+        </a>
+      </p>
     </header>
   </section>
   <section class="w-full flex justify-center p-8">
     <div>
-      <h2 class="text-5xl font-semibold text-center mb-16">
+      <h2 class="text-5xl font-bold text-center mb-16">
         Cross-platform learning app
       </h2>
       <div class="flex flex-row gap-10 items-center">
@@ -41,12 +53,14 @@ import ImageSlider from "../components/sliders/image-slider.astro";
           className="w-60% h-540px block"
         />
         <div class="w-40% flex flex-col gap-10 items-center">
-          <p class="text-xl">
+          <p class="text-xl th-text-color">
             Explore the functionalities and the intuitive design of the
             application. Immerse yourself in the experience that we offer to
             simplify your learning.
           </p>
-          <button class="bg-blue-600 text-white py-2 px-4 rounded-md">
+          <button
+            class="th-bg-primary button-effect font-semibold text-white py-2 px-3 rounded-md"
+          >
             Read the docs
           </button>
         </div>
@@ -54,12 +68,15 @@ import ImageSlider from "../components/sliders/image-slider.astro";
     </div>
   </section>
   <section class="w-full flex justify-center p-4 py-12 pb-20">
-    <div class="max-w-80% items-center overflow-hidden">
-      <h2 class="text-5xl font-semibold mb-10 text-center">
-        Built with <a href="https://tauri.app/" target="_blank">Tauri</a> and <a
-          href="https://vuejs.org/"
-          target="_blank">Vue</a
-        >
+    <div class="max-w-80% items-center overflow-hidden links">
+      <h2 class="text-5xl font-bold mb-10 text-center">
+        Built with
+        <a href="https://tauri.app/" target="_blank" class="th-text-color">
+          Tauri
+        </a> and
+        <a href="https://vuejs.org/" target="_blank" class="th-text-color">
+          Vue
+        </a>
       </h2>
       <ul class="flex flex-row flex-wrap gap-6 justify-center">
         <CardFeature
@@ -95,5 +112,26 @@ import ImageSlider from "../components/sliders/image-slider.astro";
   .section-header {
     min-height: 100vh;
     padding-top: 70px;
+  }
+
+  .section-header :global(.word-slider h3) {
+    display: inline;
+    color: hsla(var(--primary-color), 1);
+    /* background: #6acf3e; */
+    /* background: linear-gradient(
+      to right,
+      hsla(var(--primary-color), 1),
+      #cace57 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+  }
+
+  .button-effect:hover {
+    transform: scale(1.05);
+    filter: brightness(120%);
+  }
+  .button-effect {
+    transition: transform 0.2s ease, filter 0.3s ease;
   }
 </style>
