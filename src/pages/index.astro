@@ -28,21 +28,38 @@ import ImageSlider from "../components/sliders/image-slider.astro";
   </section>
   <section class="w-full flex justify-center p-8">
     <div>
-      <h2 class="text-5xl font-semibold text-center mb-8">Display images</h2>
-      <ImageSlider
-        images={[
-          "/images/flix-import-deck.png",
-          "/images/flix-decks-docs.png",
-          "/images/flix-markdown.png",
-        ]}
-        className="w-600px h-540px block"
-      />
+      <h2 class="text-5xl font-semibold text-center mb-16">
+        Cross-platform learning app
+      </h2>
+      <div class="flex flex-row gap-10 items-center">
+        <ImageSlider
+          images={[
+            "/images/flix-import-deck.png",
+            "/images/flix-decks-docs.png",
+            "/images/flix-markdown.png",
+          ]}
+          className="w-60% h-540px block"
+        />
+        <div class="w-40% flex flex-col gap-10 items-center">
+          <p class="text-xl">
+            Explore the functionalities and the intuitive design of the
+            application. Immerse yourself in the experience that we offer to
+            simplify your learning.
+          </p>
+          <button class="bg-blue-600 text-white py-2 px-4 rounded-md">
+            Read the docs
+          </button>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="w-full flex justify-center p-4 py-12">
+  <section class="w-full flex justify-center p-4 py-12 pb-20">
     <div class="max-w-80% items-center overflow-hidden">
-      <h2 class="text-5xl font-semibold mb-20 text-center">
-        Some important features
+      <h2 class="text-5xl font-semibold mb-10 text-center">
+        Built with <a href="https://tauri.app/" target="_blank">Tauri</a> and <a
+          href="https://vuejs.org/"
+          target="_blank">Vue</a
+        >
       </h2>
       <ul class="flex flex-row flex-wrap gap-6 justify-center">
         <CardFeature
