@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import WriterWord from "../components/writer-word.astro";
 import CardFeature from "../components/card-feature.astro";
+import ImageSlider from "../components/sliders/image-slider.astro";
 ---
 
 <Layout title="Flix - The app for workspaces">
@@ -25,12 +26,29 @@ import CardFeature from "../components/card-feature.astro";
       </div>
     </header>
   </section>
+  <section class="w-full flex justify-center p-8">
+    <div>
+      <h2 class="text-5xl font-semibold text-center mb-8">Display images</h2>
+      <ImageSlider
+        images={[
+          "/images/flix-import-deck.png",
+          "/images/flix-decks-docs.png",
+          "/images/flix-markdown.png",
+        ]}
+        className="w-600px h-540px block"
+      />
+    </div>
+  </section>
   <section class="w-full flex justify-center p-4 py-12">
     <div class="max-w-80% items-center overflow-hidden">
       <h2 class="text-5xl font-semibold mb-20 text-center">
         Some important features
       </h2>
-      <ul class="flex flex-row flex-wrap gap-6">
+      <ul class="flex flex-row flex-wrap gap-6 justify-center">
+        <CardFeature
+          header="Good ui"
+          content="The UI have more colors and good design to be fluid and intuitive."
+        />
         <CardFeature
           header="Import"
           content="Supports anki files, you don't need to create your decks from scratch."
@@ -42,6 +60,14 @@ import CardFeature from "../components/card-feature.astro";
         <CardFeature
           header="Organize"
           content="Create workspaces or learning spaces to group decks and notes."
+        />
+        <CardFeature
+          header="Cross Platform"
+          content="The applications is bundled for Windows, Linux and MacOs."
+        />
+        <CardFeature
+          header="Open Source"
+          content="This project is open source and will remain so."
         />
       </ul>
     </div>
