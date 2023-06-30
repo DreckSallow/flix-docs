@@ -1,0 +1,97 @@
+---
+import Arrow from "../icons/arrow.astro";
+interface Props {
+  images: string[];
+  className: string;
+}
+
+const { images, className } = Astro.props;
+---
+
+<image-slider data-images={images} class={"relative " + className}>
+  <button class="button button-left left-2 hover:bg-neutral-300 rounded-full">
+    <Arrow className="h-10 w-10 fill-neutral-600 rotate-180" />
+  </button>
+  <ul class="w-full h-full relative">
+    {
+      images.map((img) => {
+        return (
+          <li class="absolute opacity-0 left-0 top-0">
+            <img src={img} alt="image-rata" class="w-full h-full object-fill" />
+          </li>
+        );
+      })
+    }
+  </ul>
+  <button class="button button-right right-2 hover:bg-neutral-300 rounded-full">
+    <Arrow className="h-10 w-10 fill-neutral-600 " />
+  </button>
+</image-slider>
+
+<style>
+  .button {
+    transition: background-color 0.3s ease;
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  img {
+    transition: opacity 0.5s ease;
+  }
+
+  li {
+    height: inherit;
+    width: inherit;
+    transition: opacity 0.5s ease;
+  }
+
+  li:first-child {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  class ImageSlider extends HTMLElement {
+    images: HTMLLIElement[];
+    index = 0;
+    constructor() {
+      super();
+      this.images = Array.from(this.querySelectorAll("li"));
+      this.init();
+    }
+    checkIndex(isForward = false) {
+      if (isForward) {
+        if (this.index + 1 >= this.images.length) return 0;
+        return this.index + 1;
+      } else {
+        if (this.index === 0) return this.images.length - 1;
+        return this.index - 1;
+      }
+    }
+
+    init() {
+      this.index + 1;
+
+      this.querySelector(".button-left")?.addEventListener("click", () => {
+        const newIndex = this.checkIndex();
+        if (this.images[newIndex]) {
+          this.images[this.index].style.opacity = "0";
+          this.images[newIndex].style.opacity = "1";
+        }
+        this.index = newIndex;
+      });
+
+      this.querySelector(".button-right")?.addEventListener("click", () => {
+        const newIndex = this.checkIndex(true);
+        if (this.images[newIndex]) {
+          this.images[this.index].style.opacity = "0";
+          this.images[newIndex].style.opacity = "1";
+        }
+        this.index = newIndex;
+      });
+    }
+  }
+
+  customElements.define("image-slider", ImageSlider);
+</script>
