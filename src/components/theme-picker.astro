@@ -1,0 +1,115 @@
+---
+import Arrow from "./icons/arrow.astro";
+
+const options = ["Default", "Light", "Dark"];
+---
+
+<selector-data class="relative rounded-md th-border-primary">
+  <div
+    class="option-button w-full h-full flex flex-row gap-2 cursor-pointer py-2 px-3"
+  >
+    <span class="option-selected">{options[0]}</span>
+    <Arrow className="h-6 w-6 rotate-90" />
+  </div>
+  <div role="listbox" class="th-bg rounded-md w-full overflow-hidden">
+    {
+      options.map((opt) => {
+        return (
+          <div role="option" class="p-2 cursor-pointer" data-opt={opt}>
+            {opt}
+          </div>
+        );
+      })
+    }
+  </div>
+</selector-data>
+
+<style>
+  div[role="listbox"] {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(103%);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: none;
+  }
+
+  div[role="option"]:hover {
+    background-color: hsla(var(--primary-color), 0.4);
+  }
+
+  .expand {
+    display: block !important;
+  }
+</style>
+
+<script>
+  class SelectorData extends HTMLElement {
+    listElement: HTMLElement | null;
+    optionSlectedElement: HTMLElement | null;
+    constructor() {
+      super();
+      this.listElement = this.querySelector(
+        "[role='listbox']"
+      ) as HTMLElement | null;
+      this.optionSlectedElement = this.querySelector(".option-selected");
+      this.checkThemeSaved();
+      this.init();
+    }
+
+    checkThemeSaved() {
+      const th = localStorage.getItem("flix-theme");
+      if (th && this.optionSlectedElement) {
+        this.optionSlectedElement.textContent =
+          th.split("-").shift() ?? "Default";
+      }
+    }
+
+    onChangeTheme(th: string | null) {
+      const oldClasses = Array.from(document.body.classList).filter((c) =>
+        c.endsWith("theme")
+      );
+      document.body.classList.remove(...oldClasses);
+      const theme = (th ?? "Default").toLowerCase() + "-theme";
+      localStorage.setItem("flix-theme", theme);
+      document.body.classList.add(theme);
+    }
+
+    init() {
+      // handle the out-click
+      document.addEventListener("click", (e) => {
+        if (!this.listElement) return;
+        if (
+          e.target !== this.listElement &&
+          !this.listElement?.contains(e.target as Node)
+        ) {
+          this.listElement.classList.remove("expand");
+        }
+      });
+
+      //handle option clicked!
+      this.listElement?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!e.target) return;
+        const target = e.target as HTMLElement;
+        if (target.getAttribute("role") === "option") {
+          const opt = target.getAttribute("data-opt");
+          if (this.optionSlectedElement && this.listElement) {
+            this.optionSlectedElement.textContent =
+              opt?.toLowerCase() + "-theme";
+            this.listElement.classList.remove("expand");
+            this.onChangeTheme(opt);
+          }
+        }
+      });
+
+      this.querySelector(".option-button")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!this.listElement) return;
+        this.listElement.classList.toggle("expand");
+      });
+    }
+  }
+
+  customElements.define("selector-data", SelectorData);
+</script>
