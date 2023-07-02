@@ -8,14 +8,14 @@ const options = ["Default", "Light", "Dark"];
   <div
     class="option-button w-full h-full flex flex-row gap-2 cursor-pointer py-2 px-3"
   >
-    <span class="option-selected">{options[0]}</span>
-    <Arrow className="h-6 w-6 rotate-90" />
+    <span class="option-selected text-sm">{options[0]}</span>
+    <Arrow className="h-6 w-6 rotate-90 th-fill" />
   </div>
   <div role="listbox" class="th-bg rounded-md w-full overflow-hidden">
     {
       options.map((opt) => {
         return (
-          <div role="option" class="p-2 cursor-pointer" data-opt={opt}>
+          <div role="option" class="p-2 cursor-pointer text-sm" data-opt={opt}>
             {opt}
           </div>
         );
@@ -58,21 +58,27 @@ const options = ["Default", "Light", "Dark"];
     }
 
     checkThemeSaved() {
-      const th = localStorage.getItem("flix-theme");
-      if (th && this.optionSlectedElement) {
-        this.optionSlectedElement.textContent =
-          th.split("-").shift() ?? "Default";
+      const th = localStorage.getItem("flix-theme")
+        ? localStorage.getItem("flix-theme")?.split("-").shift()
+        : "Light";
+
+      if (this.optionSlectedElement) {
+        this.optionSlectedElement.textContent = th as string;
+        this.setBodyTheme(th?.toLowerCase() + "-theme");
       }
     }
-
-    onChangeTheme(th: string | null) {
+    setBodyTheme(theme: string) {
       const oldClasses = Array.from(document.body.classList).filter((c) =>
         c.endsWith("theme")
       );
       document.body.classList.remove(...oldClasses);
+      document.body.classList.add(theme);
+    }
+
+    onChangeTheme(th: string | null) {
       const theme = (th ?? "Default").toLowerCase() + "-theme";
       localStorage.setItem("flix-theme", theme);
-      document.body.classList.add(theme);
+      this.setBodyTheme(theme);
     }
 
     init() {
@@ -96,7 +102,7 @@ const options = ["Default", "Light", "Dark"];
           const opt = target.getAttribute("data-opt");
           if (this.optionSlectedElement && this.listElement) {
             this.optionSlectedElement.textContent =
-              opt?.toLowerCase() + "-theme";
+              opt?.toLowerCase() ?? "Default";
             this.listElement.classList.remove("expand");
             this.onChangeTheme(opt);
           }
