@@ -7,7 +7,7 @@ import ThemePicker from "./theme-picker.astro";
 
 <nav
   id="main-nav"
-  class="w-full flex flex-row justify-between px-4 text-lg z-99 th-bg"
+  class="w-full flex flex-row justify-between px-4 text-lg z-99 th-bg th-text-color"
 >
   <ul class="h-full flex flex-row items-center gap-4">
     <li>
@@ -39,9 +39,10 @@ import ThemePicker from "./theme-picker.astro";
   nav {
     height: 70px;
     position: fixed;
-    border-style: solid;
-    border-width: 1px;
-    border-color: hsla(var(--text-color), 0.4);
+    border: 0;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsla(var(--text-color), 0.4);
     top: 0;
   }
   nav li {
