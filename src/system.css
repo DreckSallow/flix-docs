@@ -1,5 +1,22 @@
-.yellow-theme {
-  --primary-color: #cace57;
+.default-theme {
+  --alpha: 1;
+  --primary-color: 0, 1%, 47%;
+  --text-color: 215, 19%, 35%;
+  --bg-color: 240, 100%, 100%;
+  --bg-accent: 240, 100%, 100%;
+  --link-color: 215, 19%, 35%;
+  --header-color: 240, 2%, 10%;
+}
+
+.dark-theme {
+  --alpha: 1;
+  --primary-color: 188, 57%, 65%;
+  --text-color: 0, 0%, 100%;
+  --bg-color: 233, 12%, 29%;
+  --bg-accent: 234, 10%, 36%;
+  --link-color: 230, 10%, 52%;
+  --header-color: 0, 0%, 100%;
+  /* --primary-color: 62, 55%, 57%; */
 }
 
 .light-theme {
@@ -7,10 +24,17 @@
   --primary-color: 200, 98%, 39%;
   --text-color: 215, 19%, 35%;
   --bg-color: 210, 40%, 98%;
+  --bg-accent: 210, 40%, 98%;
+  --link-color: 215, 19%, 35%;
+  --header-color: 240, 2%, 10%;
 }
 
 .th-bg {
   background-color: hsla(var(--bg-color), var(--alpha));
+}
+
+.th-bg-accent {
+  background-color: hsla(var(--bg-accent), var(--alpha));
 }
 
 .th-bg-primary {
@@ -21,8 +45,20 @@
   color: hsla(var(--text-color), var(--alpha));
 }
 
+.th-header-color {
+  color: hsla(var(--header-color), var(--alpha));
+}
+
+.th-link-color {
+  color: hsla(var(--link-color), var(--alpha));
+}
+
 .th-border-primary {
   border: 1px solid hsla(var(--primary-color), var(--alpha));
+}
+
+.th-fill {
+  fill: hsla(var(--text-color), var(--alpha));
 }
 
 .links a:hover {
