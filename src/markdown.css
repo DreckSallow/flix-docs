@@ -1,0 +1,154 @@
+#markdown-css a {
+  color: hsla(var(--primary-color), 1) !important;
+}
+
+#markdown-css a:visited {
+  color: hsla(var(--primary-color), 0.6) !important;
+}
+
+#markdown-css a:hover {
+  filter: brightness(0.7) !important;
+}
+
+#markdown-css a:focus {
+  outline: thin dotted !important;
+}
+
+::-moz-selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #000;
+}
+::selection {
+  background: rgba(255, 255, 0, 0.3);
+  color: #000;
+}
+
+#markdown-css p {
+  margin: 1em 0 !important;
+}
+
+#markdown-css img {
+  width: 100% !important;
+  max-width: 800px !important;
+}
+
+#markdown-css :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: normal !important;
+  color: hsla(var(--header-color), 1) !important;
+  line-height: 1em !important;
+  font-weight: bold !important;
+  margin-top: 1em;
+  /* margin-bottom: 1em; */
+}
+#markdown-css h1 {
+  font-size: 2.5em !important;
+}
+#markdown-css h2 {
+  font-size: 2em !important;
+}
+#markdown-css h3 {
+  font-size: 1.5em !important;
+}
+#markdown-css h4 {
+  font-size: 1.2em;
+}
+#markdown-css h5 {
+  font-size: 1em;
+}
+#markdown-css h6 {
+  font-size: 0.9em;
+}
+
+#markdown-css blockquote {
+  color: #666666;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #eee solid;
+}
+#markdown-css hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #eee;
+  margin: 1em 0;
+  padding: 0;
+}
+#markdown-css :is(pre, code, kbd, samp) {
+  color: hsla(var(--text-color), 1);
+  font-family: monospace, monospace;
+  _font-family: "courier new", monospace;
+  font-size: 0.98em;
+}
+#markdown-css pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#markdown-css b,
+#markdown-css strong {
+  font-weight: bold;
+}
+
+#markdown-css dfn {
+  font-style: italic;
+}
+
+#markdown-css ins {
+  background: #ff9;
+  color: hsla(var(--text-color), 1);
+  text-decoration: none;
+}
+
+#markdown-css mark {
+  background: #ff0;
+  color: hsla(var(--text-color), 1);
+  font-style: italic;
+  font-weight: bold;
+}
+
+#markdown-css sub,
+#markdown-css sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+#markdown-css sup {
+  top: -0.5em;
+}
+#markdown-css sub {
+  bottom: -0.25em;
+}
+
+#markdown-css ul,
+#markdown-css ol {
+  margin: 1em 0;
+  padding: 0 0 0 2em;
+  list-style: unset;
+}
+#markdown-css li p:last-child {
+  margin: 0;
+}
+#markdown-css dd {
+  margin: 0 0 0 2em;
+}
+
+#markdown-css img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+#markdown-css table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+#markdown-css th {
+  border-bottom: 1px solid black;
+}
+#markdown-css td {
+  vertical-align: top;
+}

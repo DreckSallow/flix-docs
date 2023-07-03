@@ -1,0 +1,98 @@
+---
+import "../markdown.css";
+import Layout from "./Layout.astro";
+import Arrow from "../components/icons/arrow.astro";
+import { docs } from "../data/docs";
+---
+
+<Layout title="Flix - Documentation">
+  <section class="w-full h-screen pt-70px flex flex-row">
+    <aside class="h-full min-w-240px max-w-400px">
+      <nav class="h-inherit p-4 flex flex-col gap-2 th-text-color">
+        {
+          docs.map((doc) => {
+            return "links" in doc ? (
+              <div class="accordion w-full">
+                <header class="w-full max-h-30px flex flex-row gap-1 items-center mb-1 ml-1">
+                  <h2>{doc.header}</h2>
+                  <Arrow className="h-5 w-5 th-fill" />
+                </header>
+                <ul class="max-h-100px overflow-y-auto w-full">
+                  {doc.links.map(({ link, title }) => {
+                    return (
+                      <li class="w-full">
+                        <a href={link} class="doc-link p-1 block rounded-md">
+                          {title}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : (
+              <a href={doc.link} class="doc-link p-1 block rounded-md">
+                {doc.title}
+              </a>
+            );
+          })
+        }
+      </nav>
+    </aside>
+    <main class="h-full w-full p-4 links overflow-y-auto" id="markdown-css">
+      <slot />
+    </main>
+  </section>
+</Layout>
+
+<style>
+  section > main {
+    flex: 1;
+  }
+  section {
+    overflow: hidden;
+  }
+  nav {
+    border: 0;
+    border: 0;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: hsla(var(--text-color), 0.4);
+  }
+
+  nav .doc-link {
+    transition: background-color 0.2s ease;
+  }
+
+  nav .doc-link:hover {
+    background-color: hsla(var(--primary-color), 0.1);
+  }
+
+  div.accordion header,
+  div.accordion .doc-link {
+    cursor: pointer;
+  }
+  ul {
+    display: flex;
+  }
+
+  .accordion svg {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  .accordion svg.rotate {
+    transform: rotate(-90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll("div.accordion").forEach((accordion) => {
+    const ul = accordion.querySelector("ul");
+    const icon = accordion.querySelector("svg");
+    accordion.querySelector("header")?.addEventListener("click", () => {
+      ul?.classList.toggle("hidden");
+      console.log(icon);
+      icon?.classList.toggle("rotate");
+    });
+  });
+</script>
