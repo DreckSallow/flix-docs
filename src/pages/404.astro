@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Flix - Not Found">
+  <section class="w-full h-screen pt-70px flex">
+    <div class="m-auto flex flex-col gap-4 items-center max-w-400px">
+      <h1 class="text-8xl font-bold">404</h1>
+      <p class="text-2xl th-text-color text-center mb-2">
+        Oops! this page was not found.
+      </p>
+      <a
+        class="text-lg font-semibold italic underline underline-offset-4 th-link-color button-effect"
+        href="/"
+      >
+        Go to Home Page</a
+      >
+    </div>
+  </section>
+</Layout>
+<style>
+  h1 {
+    color: hsla(var(--primary-color), 1);
+  }
+</style>

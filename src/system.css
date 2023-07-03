@@ -64,3 +64,12 @@
 .links a:hover {
   text-decoration-line: underline;
 }
+
+.button-effect:hover {
+  transform: scale(1.05);
+  --alpha: 1;
+}
+.button-effect {
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  --alpha: 0.9;
+}
