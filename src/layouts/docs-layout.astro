@@ -13,11 +13,11 @@ import { docs } from "../data/docs";
           docs.map((doc) => {
             return "links" in doc ? (
               <div class="accordion w-full">
-                <header class="w-full max-h-30px flex flex-row gap-1 items-center mb-1 ml-1">
+                <header class="w-full max-h-30px font-semibold flex flex-row gap-1 items-center mb-1 ml-1">
                   <h2>{doc.header}</h2>
                   <Arrow className="h-5 w-5 th-fill" />
                 </header>
-                <ul class="max-h-100px overflow-y-auto w-full">
+                <ul class="max-h-300px overflow-y-auto w-full flex-col gap-1">
                   {doc.links.map(({ link, title }) => {
                     return (
                       <li class="w-full">
@@ -82,6 +82,9 @@ import { docs } from "../data/docs";
 
   .accordion svg.rotate {
     transform: rotate(-90deg);
+  }
+  main :global(p, ul) {
+    color: hsla(var(--text-color), 1);
   }
 </style>
 

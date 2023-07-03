@@ -15,12 +15,12 @@
 }
 
 ::-moz-selection {
-  background: rgba(255, 255, 0, 0.3);
-  color: #000;
+  background: hsla(var(--primary-color), 0.4);
+  color: #f8f3f3;
 }
 ::selection {
-  background: rgba(255, 255, 0, 0.3);
-  color: #000;
+  background: hsla(var(--primary-color), 0.4);
+  color: #f8f3f3;
 }
 
 #markdown-css p {
@@ -50,13 +50,13 @@
   font-size: 1.5em !important;
 }
 #markdown-css h4 {
-  font-size: 1.2em;
+  font-size: 1.2em !important;
 }
 #markdown-css h5 {
-  font-size: 1em;
+  font-size: 1em !important;
 }
 #markdown-css h6 {
-  font-size: 0.9em;
+  font-size: 0.9em !important;
 }
 
 #markdown-css blockquote {
