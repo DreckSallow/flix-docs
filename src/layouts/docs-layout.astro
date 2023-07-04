@@ -6,7 +6,7 @@ import { docs } from "../data/docs";
 ---
 
 <Layout title="Flix - Documentation">
-  <section class="w-full h-screen pt-70px flex flex-row">
+  <section class="w-full min-h-screen pt-70px flex flex-row">
     <aside class="h-full min-w-240px max-w-400px">
       <nav class="h-inherit p-4 flex flex-col gap-2 th-text-color">
         {
@@ -17,7 +17,7 @@ import { docs } from "../data/docs";
                   <h2>{doc.header}</h2>
                   <Arrow className="h-5 w-5 th-fill" />
                 </header>
-                <ul class="max-h-300px overflow-y-auto w-full flex-col gap-1">
+                <ul class="max-h-300px overflow-y-auto w-full flex-col gap-1 ml-0.5">
                   {doc.links.map(({ link, title }) => {
                     return (
                       <li class="w-full">
@@ -38,7 +38,7 @@ import { docs } from "../data/docs";
         }
       </nav>
     </aside>
-    <main class="h-full w-full p-4 links overflow-y-auto" id="markdown-css">
+    <main class="h-full w-full p-4 min-h-screen links" id="markdown-css">
       <slot />
     </main>
   </section>
@@ -48,15 +48,13 @@ import { docs } from "../data/docs";
   section > main {
     flex: 1;
   }
-  section {
-    overflow: hidden;
+  aside {
+    position: sticky;
+    top: 70px;
   }
   nav {
     border: 0;
     border: 0;
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color: hsla(var(--text-color), 0.4);
   }
 
   nav .doc-link {
@@ -82,6 +80,11 @@ import { docs } from "../data/docs";
 
   .accordion svg.rotate {
     transform: rotate(-90deg);
+  }
+  main {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: hsla(var(--text-color), 0.4);
   }
   main :global(p, ul) {
     color: hsla(var(--text-color), 1);
