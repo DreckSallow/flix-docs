@@ -3,6 +3,11 @@ import "../markdown.css";
 import Layout from "./Layout.astro";
 import Arrow from "../components/icons/arrow.astro";
 import { docs } from "../data/docs";
+
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
 ---
 
 <Layout title="Flix - Documentation">
@@ -21,7 +26,11 @@ import { docs } from "../data/docs";
                   {doc.links.map(({ link, title }) => {
                     return (
                       <li class="w-full">
-                        <a href={link} class="doc-link p-1 block rounded-md">
+                        <a
+                          href={link}
+                          class="doc-link p-1 block rounded-md"
+                          class:list={{ selected: link === url }}
+                        >
                           {title}
                         </a>
                       </li>
@@ -30,7 +39,11 @@ import { docs } from "../data/docs";
                 </ul>
               </div>
             ) : (
-              <a href={doc.link} class="doc-link p-1 block rounded-md">
+              <a
+                href={doc.link}
+                class="doc-link p-1 block rounded-md"
+                class:list={{ selected: doc.link === url }}
+              >
                 {doc.title}
               </a>
             );
@@ -55,6 +68,10 @@ import { docs } from "../data/docs";
   nav {
     border: 0;
     border: 0;
+  }
+
+  nav .doc-link.selected {
+    background-color: hsla(var(--primary-color), 0.1);
   }
 
   nav .doc-link {
@@ -97,7 +114,6 @@ import { docs } from "../data/docs";
     const icon = accordion.querySelector("svg");
     accordion.querySelector("header")?.addEventListener("click", () => {
       ul?.classList.toggle("hidden");
-      console.log(icon);
       icon?.classList.toggle("rotate");
     });
   });
