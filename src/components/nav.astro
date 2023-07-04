@@ -1,26 +1,28 @@
 ---
 import FlixLogo from "./icons/flix-logo.astro";
-// import GithubIcon from "./icons/github.astro";
-// import SunIcon from "./icons/sun.astro";
+import Github from "./icons/github.astro";
 import ThemePicker from "./theme-picker.astro";
 ---
 
 <nav
   id="main-nav"
-  class="w-full flex flex-row justify-between px-4 text-lg z-99 th-bg th-text-color"
+  class="w-full flex flex-row justify-between px-4 text-lg z-99 th-bg th-text-color links"
 >
   <ul class="h-full flex flex-row items-center gap-4">
     <li>
-      <a href="/" class="flex flex-row gap-1 items-center">
+      <a href="/" class="flex flex-row gap-1 items-center font-semibold">
         <FlixLogo className="h-10 w-12" />
         Flix
       </a>
     </li>
     <li>
-      <a href="/docs">docs</a>
+      <a href="/docs/introduction">Docs</a>
     </li>
   </ul>
-  <div class="flex items-center">
+  <div class="flex items-center gap-4">
+    <a href="https://github.com/DreckSallow/flix">
+      <Github className="th-fill h-8 w-8" />
+    </a>
     <ThemePicker />
   </div>
   <!-- <ul class="h-full flex flex-row items-center gap-6">
@@ -47,6 +49,10 @@ import ThemePicker from "./theme-picker.astro";
   }
   nav li {
     cursor: pointer;
+  }
+  nav a:hover {
+    --alpha: 0.7;
+    text-underline-offset: 2px;
   }
 </style>
 <!-- 
