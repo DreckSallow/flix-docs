@@ -9,7 +9,7 @@ const options = ["Default", "Light", "Dark"];
     class="option-button w-full h-full flex flex-row gap-2 cursor-pointer py-2 px-3"
   >
     <span class="option-selected text-sm">{options[0]}</span>
-    <Arrow className="h-6 w-6 rotate-90 th-fill" />
+    <Arrow className="h-6 w-6 th-fill" />
   </div>
   <div role="listbox" class="th-bg rounded-md w-full overflow-hidden">
     {
@@ -34,6 +34,14 @@ const options = ["Default", "Light", "Dark"];
     display: none;
   }
 
+  svg {
+    transform: rotate(90deg);
+    transition: transform 0.6s ease;
+  }
+  svg.rotate {
+    transform: rotate(-90deg);
+  }
+
   div[role="option"]:hover {
     background-color: hsla(var(--primary-color), 0.4);
   }
@@ -47,12 +55,14 @@ const options = ["Default", "Light", "Dark"];
   class SelectorData extends HTMLElement {
     listElement: HTMLElement | null;
     optionSlectedElement: HTMLElement | null;
+    iconElement: SVGSVGElement | null;
     constructor() {
       super();
       this.listElement = this.querySelector(
         "[role='listbox']"
       ) as HTMLElement | null;
       this.optionSlectedElement = this.querySelector(".option-selected");
+      this.iconElement = this.querySelector("svg");
       this.checkThemeSaved();
       this.init();
     }
@@ -90,6 +100,7 @@ const options = ["Default", "Light", "Dark"];
           !this.listElement?.contains(e.target as Node)
         ) {
           this.listElement.classList.remove("expand");
+          this.iconElement?.classList.remove("rotate");
         }
       });
 
@@ -111,8 +122,9 @@ const options = ["Default", "Light", "Dark"];
 
       this.querySelector(".option-button")?.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (!this.listElement) return;
-        this.listElement.classList.toggle("expand");
+        this.listElement?.classList.toggle("expand");
+        console.log(this.iconElement);
+        this.iconElement?.classList.toggle("rotate");
       });
     }
   }
