@@ -32,4 +32,8 @@ export const docs: LinkType[] = [
       },
     ],
   },
+  {
+    title: "Used Tools",
+    link: "/docs/used-tools",
+  },
 ];
