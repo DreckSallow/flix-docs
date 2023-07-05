@@ -8,7 +8,7 @@ import ThemePicker from "./theme-picker.astro";
   id="main-nav"
   class="w-full flex flex-row justify-between px-4 lg:px-10 text-lg z-99 th-bg th-text-color links"
 >
-  <ul class="h-full flex flex-row items-center gap-4">
+  <ul class="h-full flex flex-row items-center gap-4 text-font">
     <li>
       <a href="/" class="flex flex-row gap-1 items-center font-semibold">
         <FlixLogo className="h-10 w-12" />
@@ -34,7 +34,7 @@ import ThemePicker from "./theme-picker.astro";
     border: 0;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: hsla(var(--text-color), 0.4);
+    border-bottom-color: hsla(var(--border-color), 1);
     top: 0;
   }
   nav li {
