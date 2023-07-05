@@ -7,14 +7,14 @@ interface Props {
 const { header, content } = Astro.props;
 ---
 
-<li class="rounded-lg p-4 th-bg-accent">
+<li class="rounded-lg p-4 th-bg-accent w-80% sm:w-280px">
   <header class="font-semibold text-lg th-text-color">{header}</header>
   <p class="th-text-color mt-2">{content}</p>
 </li>
 
 <style>
   li {
-    width: 280px;
+    /* width: 280px; */
     height: 150px;
     border: 1px solid hsla(var(--text-color), 0.4);
   }
