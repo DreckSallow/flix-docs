@@ -26,7 +26,18 @@ const { url } = Astro.props;
     flex: 1;
   }
 
+  @media (min-width 1024px) {
+    main :global(video) {
+      max-width: 80%;
+    }
+  }
+
+  main :global(video) {
+    max-width: 100% !important;
+  }
+
   main {
+    border: 0;
     border-left-style: solid;
     /* border-left-width: 1px; */
     border-left-color: hsla(var(--text-color), 0.4);
