@@ -9,51 +9,57 @@ import ImageSlider from "../components/sliders/image-slider.astro";
   <section class="section-header w-full flex">
     <header class="m-auto p-3 flex flex-col items-center gap-8">
       <div class="flex flex-col gap-8 items-center">
-        <h1 class="text-9xl font-bold th-header-color">Flix App</h1>
+        <h1 class="text-7xl sm:text-9xl font-bold th-header-color header-font">
+          Flix App
+        </h1>
         <WriterWord
           words={["Create.", "Import.", "Organize."]}
-          className="word-slider text-9xl font-bold h-120px"
+          className="word-slider text-7xl sm:text-9xl font-bold sm:h-120px header-font"
         />
       </div>
       <div class="flex flex-row gap-4 font-semibold mt-10 th-text-color">
         <a
-          class="th-bg-primary button-effect font-semibold text-white px-4 py-3 rounded-md cursor-pointer"
+          class="th-bg-primary button-effect font-semibold text-white px-4 py-3 rounded-md cursor-pointer text-sm sm:text-base md:text-xl"
           href="https://github.com/DreckSallow/flix/releases"
         >
           Download now
         </a>
         <a
           href="/docs/introduction"
-          class="px-4 py-3 cursor-pointer th-border-primary rounded-md button-effect"
+          class="px-4 py-3 cursor-pointer th-border-primary rounded-md button-effect text-sm sm:text-base md:text-xl"
           >Documentation</a
         >
       </div>
-      <p class="th-text-color mt-4 text-lg links">
+      <h4
+        class="th-text-color mt-4 text-sm sm:text-lg text-center links text-font"
+      >
         Free and Open Source project. Developed by <a
           href="https://www.arandadev.com/"
           target="_blank"
           class="italic font-semibold th-link-color"
           >Dreck Sallow
         </a>
-      </p>
+      </h4>
     </header>
   </section>
   <section class="w-full flex justify-center p-8">
     <div>
-      <h2 class="text-5xl font-bold text-center mb-16 th-header-color">
+      <h2
+        class="text-4xl sm:text-5xl font-bold text-center mb-16 th-header-color header-font"
+      >
         Cross-platform learning app
       </h2>
-      <div class="flex flex-row gap-10 items-center">
+      <div class="flex flex-col lg:flex-row gap-10 items-center">
         <ImageSlider
           images={[
             "/images/flix-import-deck.png",
             "/images/flix-decks-docs.png",
             "/images/flix-markdown.png",
           ]}
-          className="w-60% h-540px block"
+          className="w-90% lg:w-60% h-280px md:h-540px block"
         />
-        <div class="w-40% flex flex-col gap-10 items-center">
-          <p class="text-xl th-text-color">
+        <div class="w-90% lg:w-40% flex flex-col gap-10 items-center">
+          <p class="text-xl lg:text-2xl th-text-color text-font">
             Explore the functionalities and the intuitive design of the
             application. Immerse yourself in the experience that we offer to
             simplify your learning.
@@ -69,8 +75,10 @@ import ImageSlider from "../components/sliders/image-slider.astro";
     </div>
   </section>
   <section class="w-full flex justify-center p-4 py-12 pb-20">
-    <div class="max-w-80% items-center overflow-hidden th-header-color links">
-      <h2 class="text-5xl font-bold mb-10 text-center">
+    <div
+      class="w-90% sm:max-w-80% items-center overflow-hidden th-header-color links"
+    >
+      <h2 class="text-5xl font-bold mb-10 text-center header-font">
         Built with
         <a href="https://tauri.app/" target="_blank" class="th-link-color">
           Tauri
@@ -79,7 +87,7 @@ import ImageSlider from "../components/sliders/image-slider.astro";
           Vue
         </a>
       </h2>
-      <ul class="flex flex-row flex-wrap gap-6 justify-center">
+      <ul class="flex flex-row flex-wrap gap-6 justify-center w-full sm:w-auto">
         <CardFeature
           header="Good ui"
           content="The UI have more colors and good design to be fluid and intuitive."

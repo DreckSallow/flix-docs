@@ -6,6 +6,7 @@
   --bg-accent: 240, 100%, 100%;
   --link-color: 215, 19%, 35%;
   --header-color: 240, 2%, 10%;
+  --border-color: 0, 5%, 88%;
 }
 
 .dark-theme {
@@ -16,6 +17,7 @@
   --bg-accent: 234, 10%, 36%;
   --link-color: 230, 10%, 52%;
   --header-color: 0, 0%, 100%;
+  --border-color: 237, 10%, 36%;
   /* --primary-color: 62, 55%, 57%; */
 }
 
@@ -27,6 +29,7 @@
   --bg-accent: 210, 40%, 98%;
   --link-color: 215, 19%, 35%;
   --header-color: 240, 2%, 10%;
+  --border-color: 0, 5%, 88%;
 }
 
 .th-bg {
@@ -72,4 +75,14 @@
 .button-effect {
   transition: transform 0.2s ease, background-color 0.3s ease;
   --alpha: 0.9;
+}
+
+/****    FONTS *****/
+
+.header-font {
+  font-family: "Roboto", sans-serif;
+}
+
+.text-font {
+  font-family: "Inter", sans-serif;
 }

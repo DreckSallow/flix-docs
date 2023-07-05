@@ -1,0 +1,122 @@
+---
+import MenuIcon from "../../icons/menu.astro";
+import { docs } from "../../../data/docs";
+import AccordionLink from "./accordion-link.astro";
+
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+---
+
+<aside
+  class="lg:h-full w-full lg:w-auto min-w-240px lg:max-w-400px sticky lg:border-0 th-bg p-4"
+  id="aside-documentation"
+>
+  <div class="backdrop hidden"></div>
+  <button class="lg:hidden">
+    <MenuIcon className="h-6 w-6 th-fill" />
+  </button>
+  <nav class="p-1 flex flex-col flex-row gap-2 th-text-color th-bg">
+    {
+      docs.map((doc) => {
+        return "links" in doc ? (
+          <AccordionLink header={doc.header} links={doc.links} {url} />
+        ) : (
+          <a
+            href={doc.link}
+            class="doc-link p-1 block rounded-md"
+            class:list={{ selected: doc.link === url }}
+          >
+            {doc.title}
+          </a>
+        );
+      })
+    }
+  </nav>
+</aside>
+
+<style>
+  aside {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: hsla(var(--border-color), 1);
+    top: 70px;
+  }
+  nav .doc-link.selected {
+    background-color: hsla(var(--primary-color), 0.1);
+  }
+
+  nav .doc-link {
+    transition: background-color 0.2s ease;
+  }
+
+  nav .doc-link:hover {
+    background-color: hsla(var(--primary-color), 0.1);
+  }
+
+  nav {
+    visibility: visible;
+    transform: translate(0);
+    height: inherit;
+  }
+
+  div.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: all;
+    transition: opacity 0.5s;
+  }
+
+  @media (max-width: 1024px) {
+    nav {
+      transition: opacity 0.3s, transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translate(-105%);
+      opacity: 0;
+      height: 0;
+      position: fixed;
+      padding: 2em !important;
+      width: 60%;
+      max-width: 320px;
+      min-width: max-content;
+      top: 0;
+      left: 0;
+      height: 100% !important;
+    }
+  }
+
+  nav.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+    z-index: 9999999;
+  }
+</style>
+
+<script>
+  const wrapperNav = document.querySelector("#aside-documentation");
+  const nav = document.querySelector("#aside-documentation > nav");
+  const backdrop = document.querySelector("div.backdrop");
+
+  document.addEventListener("click", (e) => {
+    if (!nav) return;
+    if (e.target !== nav && !nav?.contains(e.target as Node)) {
+      nav.classList.remove("show");
+      backdrop?.classList.add("hidden");
+      wrapperNav?.classList.remove("z-99");
+    }
+  });
+
+  document
+    .querySelector("#aside-documentation > button")
+    ?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      nav?.classList.toggle("show");
+      wrapperNav?.classList.toggle("z-99");
+      backdrop?.classList.toggle("hidden");
+    });
+</script>
