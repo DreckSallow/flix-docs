@@ -1,8 +1,7 @@
 ---
 import "../markdown.css";
 import Layout from "./Layout.astro";
-import Arrow from "../components/icons/arrow.astro";
-import { docs } from "../data/docs";
+import NavDocumentation from "../components/natigations/docs/nav-documentation.astro";
 
 interface Props {
   url: string;
@@ -11,47 +10,12 @@ const { url } = Astro.props;
 ---
 
 <Layout title="Flix - Documentation">
-  <section class="w-full min-h-screen pt-70px flex flex-row">
-    <aside class="h-full min-w-240px max-w-400px">
-      <nav class="h-inherit p-4 flex flex-col gap-2 th-text-color">
-        {
-          docs.map((doc) => {
-            return "links" in doc ? (
-              <div class="accordion w-full">
-                <header class="w-full max-h-30px font-semibold flex flex-row gap-1 items-center mb-1 ml-1">
-                  <h2>{doc.header}</h2>
-                  <Arrow className="h-5 w-5 th-fill" />
-                </header>
-                <ul class="max-h-300px overflow-y-auto w-full flex-col gap-1 ml-0.5">
-                  {doc.links.map(({ link, title }) => {
-                    return (
-                      <li class="w-full">
-                        <a
-                          href={link}
-                          class="doc-link p-1 block rounded-md"
-                          class:list={{ selected: link === url }}
-                        >
-                          {title}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ) : (
-              <a
-                href={doc.link}
-                class="doc-link p-1 block rounded-md"
-                class:list={{ selected: doc.link === url }}
-              >
-                {doc.title}
-              </a>
-            );
-          })
-        }
-      </nav>
-    </aside>
-    <main class="h-full w-full p-4 min-h-screen links" id="markdown-css">
+  <section class="w-full min-h-screen pt-70px flex flex-col lg:flex-row">
+    <NavDocumentation {url} />
+    <main
+      class="h-full w-full p-4 min-h-screen links lg:border-1"
+      id="markdown-css"
+    >
       <slot />
     </main>
   </section>
@@ -61,60 +25,13 @@ const { url } = Astro.props;
   section > main {
     flex: 1;
   }
-  aside {
-    position: sticky;
-    top: 70px;
-  }
-  nav {
-    border: 0;
-    border: 0;
-  }
 
-  nav .doc-link.selected {
-    background-color: hsla(var(--primary-color), 0.1);
-  }
-
-  nav .doc-link {
-    transition: background-color 0.2s ease;
-  }
-
-  nav .doc-link:hover {
-    background-color: hsla(var(--primary-color), 0.1);
-  }
-
-  div.accordion header,
-  div.accordion .doc-link {
-    cursor: pointer;
-  }
-  ul {
-    display: flex;
-  }
-
-  .accordion svg {
-    transform: rotate(0deg);
-    transition: transform 0.3s ease;
-  }
-
-  .accordion svg.rotate {
-    transform: rotate(-90deg);
-  }
   main {
     border-left-style: solid;
-    border-left-width: 1px;
+    /* border-left-width: 1px; */
     border-left-color: hsla(var(--text-color), 0.4);
   }
   main :global(p, ul) {
     color: hsla(var(--text-color), 1);
   }
 </style>
-
-<script>
-  document.querySelectorAll("div.accordion").forEach((accordion) => {
-    const ul = accordion.querySelector("ul");
-    const icon = accordion.querySelector("svg");
-    accordion.querySelector("header")?.addEventListener("click", () => {
-      ul?.classList.toggle("hidden");
-      icon?.classList.toggle("rotate");
-    });
-  });
-</script>
