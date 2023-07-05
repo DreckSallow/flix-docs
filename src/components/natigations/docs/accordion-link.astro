@@ -1,0 +1,65 @@
+---
+import Arrow from "../../icons/arrow.astro";
+interface Props {
+  header: string;
+  links: { link: string; title: string }[];
+  url: string;
+}
+const { header, links, url } = Astro.props;
+---
+
+<div class="accordion w-full">
+  <header
+    class="w-full max-h-30px font-semibold flex flex-row gap-1 items-center mb-1 ml-1"
+  >
+    <h2>{header}</h2>
+    <Arrow className="h-5 w-5 th-fill" />
+  </header>
+  <ul class="max-h-300px overflow-y-auto w-full flex-col gap-1 ml-0.5">
+    {
+      links.map(({ link, title }) => {
+        return (
+          <li class="w-full">
+            <a
+              href={link}
+              class="doc-link p-1 block rounded-md"
+              class:list={{ selected: link === url }}
+            >
+              {title}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
+
+<style>
+  div.accordion header,
+  div.accordion .doc-link {
+    cursor: pointer;
+  }
+  ul {
+    display: flex;
+  }
+
+  .accordion svg {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  .accordion svg.rotate {
+    transform: rotate(-90deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll("div.accordion").forEach((accordion) => {
+    const ul = accordion.querySelector("ul");
+    const icon = accordion.querySelector("svg");
+    accordion.querySelector("header")?.addEventListener("click", () => {
+      ul?.classList.toggle("hidden");
+      icon?.classList.toggle("rotate");
+    });
+  });
+</script>
