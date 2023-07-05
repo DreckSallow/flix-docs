@@ -10,7 +10,7 @@ const { url } = Astro.props;
 ---
 
 <aside
-  class="lg:h-full w-full lg:w-auto min-w-240px lg:max-w-400px sticky lg:border-0 th-bg z-8 p-4 z-99"
+  class="lg:h-full w-full lg:w-auto min-w-240px lg:max-w-400px sticky lg:border-0 th-bg p-4"
   id="aside-documentation"
 >
   <div class="backdrop hidden"></div>
@@ -67,9 +67,8 @@ const { url } = Astro.props;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 100;
     background: rgba(0, 0, 0, 0.6);
-    pointer-events: none;
+    pointer-events: all;
     transition: opacity 0.5s;
   }
 
@@ -98,6 +97,7 @@ const { url } = Astro.props;
 </style>
 
 <script>
+  const wrapperNav = document.querySelector("#aside-documentation");
   const nav = document.querySelector("#aside-documentation > nav");
   const backdrop = document.querySelector("div.backdrop");
 
@@ -106,6 +106,7 @@ const { url } = Astro.props;
     if (e.target !== nav && !nav?.contains(e.target as Node)) {
       nav.classList.remove("show");
       backdrop?.classList.add("hidden");
+      wrapperNav?.classList.remove("z-99");
     }
   });
 
@@ -114,6 +115,7 @@ const { url } = Astro.props;
     ?.addEventListener("click", (e) => {
       e.stopPropagation();
       nav?.classList.toggle("show");
+      wrapperNav?.classList.toggle("z-99");
       backdrop?.classList.toggle("hidden");
     });
 </script>
